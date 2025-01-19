@@ -1,0 +1,97 @@
+{
+  "pageDimensions": [
+    2000,
+    2800
+  ],
+  "bubbleDimensions": [
+    50,
+    50
+  ],
+  "preProcessors": [
+    {
+      "name": "CropOnMarkers",
+      "options": {
+        "relativePath": "omr_marker.png",
+        "sheetToMarkerWidthRatio": 17
+      }
+    }
+  ],
+  "customLabels": {
+    "Roll_no": [
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+    ]
+  },
+  "fieldBlocks": {
+    "Roll_no": {
+      "fieldType": "QTYPE_INT",
+      "origin": [
+        1490,
+        348
+      ],
+      "fieldLabels": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ],
+      "bubblesGap": 58,
+      "labelsGap": 62
+    },
+    "MCQBlock1": {
+      "fieldType": "QTYPE_MCQ4",
+      "origin": [
+        234,
+        1210
+      ],
+      "bubblesGap": 79,
+      "labelsGap": 62,
+      "fieldLabels": [
+        "q1..25"
+      ]
+    },
+    "MCQBlock2": {
+      "fieldType": "QTYPE_MCQ4",
+      "origin": [
+        689,
+        1210
+      ],
+      "bubblesGap": 79,
+      "labelsGap": 62,
+      "fieldLabels": [
+        "q26..50"
+      ]
+    },
+    "MCQBlock3": {
+      "fieldType": "QTYPE_MCQ4",
+      "origin": [
+        1137,
+        1210
+      ],
+      "bubblesGap": 79,
+      "labelsGap": 62,
+      "fieldLabels": [
+        "q51..75"
+      ]
+    },
+    "MCQBlock4": {
+      "fieldType": "QTYPE_MCQ4",
+      "origin": [
+        1593,
+        1210
+      ],
+      "bubblesGap": 79,
+      "labelsGap": 62,
+      "fieldLabels": [
+        "q76..100"
+      ]
+    }
+  },
+  "emptyValue": "ABCD" 
+}
