@@ -1,17 +1,27 @@
 import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { db } from '../firebase/firebase_configuration';
+import { db, auth } from '../firebase/firebase_configuration';
 import { useState, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddAns = () => {
+  const navigate = useNavigate();
   const [totalQues, setTotalQues] = useState(0);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [subjects, setSubjects] = useState([]);
   const [ans, setAns] = useState({});
 
   useEffect(() => {
+    // Check if user is logged in
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user || !auth.currentUser) {
+      toast.error('Please log in to access this page');
+      navigate('/login');
+      return;
+    }
+
     const fetchSubjects = async () => {
       const subjectRef = doc(db, 'subject', 'subjects');
       const snapshot = await getDoc(subjectRef);
@@ -20,7 +30,7 @@ const AddAns = () => {
       }
     };
     fetchSubjects();
-  }, []);
+  }, [navigate]);
 
   const fetchExistingAnswers = async (subject) => {
     try {

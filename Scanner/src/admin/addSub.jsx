@@ -1,14 +1,24 @@
 import { useState } from 'react';
-import { db } from '../firebase/firebase_configuration';
+import { db, auth } from '../firebase/firebase_configuration';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useEffect } from 'react';
-import { toast ,ToastContainer} from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const AddSub = () => {
+    const navigate = useNavigate();
     const [subject, setSubject] = useState('');
     const [subjects, setSubjects] = useState([]);
 
     useEffect(() => {
+        // Check if user is logged in
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user || !auth.currentUser) {
+            toast.error('Please log in to access this page');
+            navigate('/login');
+            return;
+        }
+
         const fetchSubjects = async () => {
             const subjectRef = doc(db, 'subject', 'subjects');
             const snapshot = await getDoc(subjectRef);
@@ -16,7 +26,7 @@ const AddSub = () => {
             setSubjects(subjects);
         };
         fetchSubjects();
-    }, []);
+    }, [navigate]);
 
     const handleSubjectDelete = async (index) => {
         const updatedSubjects = [...subjects];
