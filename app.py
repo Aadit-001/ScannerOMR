@@ -9,6 +9,7 @@ from firebase_admin import credentials, firestore
 from flask_cors import CORS 
 from flask import jsonify
 
+
 app = Flask(__name__)
 CORS(app)
 
