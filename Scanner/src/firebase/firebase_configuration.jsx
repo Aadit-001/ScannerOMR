@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getFirestore, serverTimestamp } from "firebase/firestore";
+import { getAuth, GoogleAuthProvider, setPersistence, browserLocalPersistence } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAH0K9AwNApmYoqXoNrrQSkFaIdxgoNo_w",
@@ -15,7 +15,27 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const fireDB = getFirestore(app);
+const db = fireDB; // Backward compatibility
 const auth = getAuth(app);
 
-export { db, auth };
+// Configure Google Provider
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  'prompt': 'select_account'
+});
+
+// Set persistence
+setPersistence(auth, browserLocalPersistence)
+  .catch((error) => {
+    console.error("Error setting persistence:", error);
+  });
+
+export { 
+  app, 
+  fireDB, 
+  db,  // Keep for backward compatibility 
+  auth, 
+  provider,
+  serverTimestamp 
+};
