@@ -81,7 +81,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="fixed z-50 top-0 left-0 right-0 backdrop-blur-md flex justify-between items-center p-4 text-white relative"
+            className="fixed z-50 top-0 left-0 right-0 backdrop-blur-md flex justify-between items-center p-4 text-white"
             style={{
                 backgroundImage: `
                     linear-gradient(
