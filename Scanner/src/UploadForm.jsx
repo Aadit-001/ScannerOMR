@@ -9,6 +9,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { FaFileUpload } from 'react-icons/fa';
 
 const UploadForm = ({ setResults, setImagePresent}) => {
     const navigate = useNavigate();
@@ -125,10 +126,10 @@ const UploadForm = ({ setResults, setImagePresent}) => {
 
     return (
         <>
-            <div className={`bg-gradient-to-r from-gray-900 via-gray-800 to-black w-[40%] rounded-lg shadow-md `}>
-                <div ref={formRef} className={` w-[100%] p-10 flex flex-col`}>
-                    <div className="flex justify-between pl-10 pr-10 pb-2">
-                        <div className="text-green-500 text-2xl w-full pb-4 text-center font-bold">Select an image to upload</div>
+            <div className={`bg-gradient-to-r from-gray-900 via-gray-800 to-black w-full md:w-[60%] lg:w-[40%] rounded-lg shadow-md mx-auto`}>
+                <div ref={formRef} className={` w-full p-10 flex flex-col`}>
+                    <div className="flex flex-col md:flex-row justify-between px-4 md:px-10 pb-2">
+                        <div className="text-green-500 text-xl md:text-2xl w-full pb-4 text-center font-bold">Select an image to upload</div>
                         {/* <button type="submit" className="bg-green-500 pl-5 pr-5 pt-2 pb-2 hover:bg-primary-700 text-white font-bold rounded "> */}
                     </div>
                     <div className="mb-6">
@@ -143,31 +144,42 @@ const UploadForm = ({ setResults, setImagePresent}) => {
                             ))}
                         </select>
                     </div>
-                    <label className=" h-[100%]">
-                        <input type="file" ref={inputRef} onChange={handleFileChange} required className="w-full cursor-pointer h-[12%] pt-1 pl-4 text-gray-700 from-gray-900 via-gray-800 to-black border border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" />
+                    <label className=" h-[100%] relative cursor-pointer group">
+                        {/* <input type="file" ref={inputRef} onChange={handleFileChange} required className="w-full cursor-pointer h-[12%] pt-1 pl-4 text-gray-700 from-gray-900 via-gray-800 to-black border border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 tracking-wider" /> */}
+                        <input 
+                            type="file" 
+                            ref={inputRef} 
+                            onChange={handleFileChange} 
+                            required 
+                            className="absolute inset-0 opacity-0 cursor-pointer z-20" 
+                        />
+                        <div className="flex items-center justify-center p-4 border-2 border-dashed border-cyan-500/50 rounded-lg group-hover:border-cyan-400 group-hover:bg-cyan-500/10 transition-all duration-300">
+                            <FaFileUpload className="mr-2 text-cyan-400 group-hover:text-cyan-300" />
+                            <span className="text-cyan-300 group-hover:text-cyan-200">Select OMR Sheet</span>
+                        </div>
                     </label>
                 </div>
                 {selectedSubject && imageSrc && (
-                    <div id="image-container" className="fixed top-24 left-1/2 transform -translate-x-1/2  h-[40vw] w-[30vw] z-40 bg-red-900 ">
+                    <div id="image-container" className="fixed top-24 left-1/2 transform -translate-x-1/2 h-[40vw] w-[30vw] z-40">
                         <img style={{ width: '100%', height: '100%', border: '6px solid green' }} ref={imgRef} src={imageSrc} alt="uploaded image" />
                         {imageSrc && loading && (
-                            <div className="absolute top-0 left-0 bg-black/20 z-50 h-[40vw] w-[30vw] ">
-                                <div className=" h-full z-50 w-full ">
-                                    <div className="animate-custom-bounce border-2 border-green-500 h-1 w-full shadow-glow  "></div>
+                            <div className="absolute top-0 left-0 bg-black/20 z-50 h-full w-full">
+                                <div className="h-full z-50 w-full">
+                                    <div className="animate-custom-bounce border-2 border-green-500 h-1 w-full shadow-glow"></div>
                                 </div>
                             </div>
                         )}
                     </div>
                 )}
             </div>
-            <div className='flex flex-col fixed bottom-10 right-80 justify-center items-center gap-6 pl-10'>
+            <div className='flex flex-col fixed bottom-10 right-0 md:right-20 lg:right-80 justify-center items-center gap-6 px-4 md:px-10'>
             {!loading && imageSrc && (
-                <button onClick={handleSubmit} className=" bg-green-500  text-xl pl-14 pr-14 py-2 rounded-lg hover:bg-green-700 text-white font-bold ">
+                <button onClick={handleSubmit} className="bg-green-500 text-lg md:text-xl px-8 md:px-14 py-2 rounded-lg hover:bg-green-700 text-white font-bold">
                     Scan
                 </button>
             )}
             {result && imageSrc && (
-                <button onClick={() => window.location.reload()} className=" bg-green-500  text-xl pl-4 pr-4 py-2 rounded-lg hover:bg-green-700 text-white font-bold">
+                <button onClick={() => window.location.reload()} className="bg-green-500 text-lg md:text-xl px-4 md:px-4 py-2 rounded-lg hover:bg-green-700 text-white font-bold">
                     Scan Another
                 </button>
             )}

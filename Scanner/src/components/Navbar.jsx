@@ -62,7 +62,7 @@ const Navbar = () => {
                 position: "top-right",
                 autoClose: 2000,
             });
-            navigate('/');
+            navigate('/login');
             setShowProfileMenu(false);
         } catch (error) {
             toast.error('Logout Failed: ' + error.message, {
