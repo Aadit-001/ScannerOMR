@@ -17,7 +17,7 @@ UPLOAD_FOLDER = 'Input'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Initialize Firebase
-cred = credentials.Certificate('ormscanner-2a06f-firebase-adminsdk-kutn6-2b404373da.json')
+cred = credentials.Certificate('ormscanner-2a06f-firebase-adminsdk-kutn6-a7e013c155.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
