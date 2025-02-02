@@ -48,9 +48,9 @@ const AddSub = () => {
 
     return (
         <>
-        <div className="flex flex-col items-center p-40 ">
+        <div className=" p-40 bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col items-center pb-10">
                 <img src="/src/assets/Main_logo.png" alt="Logo" className=" absolute top-32 h-24 w-28" />
-            <div className="bg-black/40 text-white backdrop-blur-md p-4 rounded-md shadow-md w-1/3 mt-24">
+            <div className="bg-black/40 text-white backdrop-blur-md p-4 rounded-md  w-1/3 mt-24">
                 <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
                     <label htmlFor="subject" className="text-2xl font-bold text-center text-green-500">
                         Add Subject
